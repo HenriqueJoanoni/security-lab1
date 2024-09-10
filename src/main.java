@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class main {
@@ -5,49 +6,53 @@ public class main {
     public static void main(String[] args) {
         try {
             Scanner sc = new Scanner(System.in);
+            double firstInput, secondInput;
             int option;
-            long firstInput, secondInput;
-
             menu();
             option = sc.nextInt();
 
-            if (option < 1 || option > 4) {
-                System.out.println(">>> Option is out of bounds!");
+            if (option == 0 || option > 4) {
+                System.out.println("This is an invalid option, please input one of the presented options:");
             }
-
             switch (option) {
                 case 1:
                     System.out.println("Enter first number");
-                    firstInput = sc.nextInt();
+                    firstInput = sc.nextDouble();
                     System.out.println("Enter second number");
-                    secondInput = sc.nextInt();
+                    secondInput = sc.nextDouble();
+                    sum(firstInput, secondInput);
                     System.out.println("The result is: " + sum(firstInput, secondInput));
                     break;
                 case 2:
                     System.out.println("Enter first number");
-                    firstInput = sc.nextInt();
+                    firstInput = sc.nextDouble();
                     System.out.println("Enter second number");
-                    secondInput = sc.nextInt();
+                    secondInput = sc.nextDouble();
+                    subtract(firstInput, secondInput);
                     System.out.println("The result is: " + subtract(firstInput, secondInput));
                     break;
                 case 3:
                     System.out.println("Enter first number");
-                    firstInput = sc.nextInt();
+                    firstInput = sc.nextDouble();
                     System.out.println("Enter second number");
-                    secondInput = sc.nextInt();
+                    secondInput = sc.nextDouble();
+                    multiply(firstInput, secondInput);
                     System.out.println("The result is: " + multiply(firstInput, secondInput));
                     break;
                 case 4:
                     System.out.println("Enter first number");
-                    firstInput = sc.nextInt();
+                    firstInput = sc.nextDouble();
                     System.out.println("Enter second number");
-                    secondInput = sc.nextInt();
+                    secondInput = sc.nextDouble();
+                    divide(firstInput, secondInput);
                     System.out.println("The result is: " + divide(firstInput, secondInput));
                     break;
             }
         } catch (Exception e) {
-            System.out.println(">>> Something went wrong");
+            System.out.println("Something went wrong");
         }
+
+
     }
 
     public static void menu() {
@@ -59,43 +64,47 @@ public class main {
 
     }
 
-    public static int sum(long a, long b) {
-        long result = 0;
+    public static double sum(double a, double b) {
+        double result = 0;
         try {
             result = a + b;
         } catch (Exception e) {
-            System.out.println(">>> Something went wrong (sum)");
+            System.out.println("Something went wrong with the addition equation");
         }
-        return (int) result;
+        return result;
     }
 
-    public static int subtract(long a, long b) {
-        long result = 0;
+    public static double subtract(double a, double b) {
+        double result = 0;
         try {
             result = a - b;
         } catch (Exception e) {
-            System.out.println(">>> Something went wrong (subtract)");
+            System.out.println("Something went wrong with the subtracting equation");
         }
-        return (int) result;
+        return result;
     }
 
-    public static int multiply(long a, long b) {
-        long result = 0;
+    public static double multiply(double a, double b) {
+        double result = 0;
         try {
             result = a * b;
         } catch (Exception e) {
-            System.out.println(">>> Something went wrong (multiply)");
+            System.out.println("Something went wrong with the multiplying equation");
         }
-        return (int) result;
+        return result;
     }
 
-    public static int divide(long a, long b) {
-        long result = 0;
+    public static double divide(double a, double b) {
+        double result = 0;
         try {
             result = a / b;
         } catch (Exception e) {
-            System.out.println(">>> Something went wrong (divide)");
+            if (a == 0 || b == 0) {
+                System.out.println("No number can be divided by zero");
+            } else {
+                System.out.println("Something went wrong with the dividing equation");
+            }
         }
-        return (int) result;
+        return result;
     }
 }
